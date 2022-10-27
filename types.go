@@ -23,11 +23,12 @@ func (m MoneyData) MinutesSinceLastUpdate() FormattedDelta {
 		return FormattedDelta{delta, "minutę"}
 	}
 
-	if delta%10 > 1 && delta%10 < 5 {
-		return FormattedDelta{delta, "minuty"}
+	if delta%10 <= 1 || delta%10 >= 5 || (delta%100 >= 10 && delta%100 <= 19) {
+		return FormattedDelta{delta, "minut"}
 	}
 
-	return FormattedDelta{delta, "minut"}
+	return FormattedDelta{delta, "minuty"}
+	
 }
 
 func (f FormattedDelta) String() string {
