@@ -1,0 +1,20 @@
+{{define "index"}}
+<html lang="pl-PL">
+  <head>
+    <meta charset="utf-8">
+    <title>ile zostało na kiełbę</title>
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <p id="account">numer konta:<br> 31 1140 2004 0000 3602 8235 5647</p>
+    
+    <p id="sausage">na kiełbę zostało</p>
+    <p id="money">{{ .Money }}&nbsp;zł</p>
+
+    <p id="updated">zaktualizowano <wbr>{{ .MinutesSinceLastUpdate }} temu</p>
+  </body>
+</html>
+{{end}}
