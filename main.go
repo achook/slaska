@@ -9,7 +9,10 @@ import (
 
 func returnError(w http.ResponseWriter, err error) {
 	w.WriteHeader(500)
-	w.Write([]byte(err.Error()))
+	_, err = w.Write([]byte(err.Error()))
+	if err != nil {
+		log.Println("Error writing error response: ", err)
+	}
 }
 
 func serveMain(w http.ResponseWriter, r *http.Request) {

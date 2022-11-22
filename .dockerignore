@@ -1,1 +1,11 @@
-test.txt
+.gitignore
+.git/
+.github/
+
+.idea/
+
+.dockerignore
+
+data.txt
+
+README.md
