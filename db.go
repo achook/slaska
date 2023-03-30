@@ -18,12 +18,19 @@ func getData() (MoneyData, error) {
 		return MoneyData{}, err
 	}
 
-	splitted := strings.Split(string(file), "\n")
-	money := splitted[0]
-	lastUpdate, err := strconv.ParseInt(splitted[1], 10, 64)
+	split := strings.Split(string(file), "\n")
+
+	money := split[0]
+
+	lastUpdate, err := strconv.ParseInt(split[1], 10, 64)
 	if err != nil {
 		return MoneyData{}, err
 	}
 
-	return MoneyData{lastUpdate, money}, nil
+	nextUpdate, err := strconv.ParseInt(split[2], 10, 64)
+	if err != nil {
+		return MoneyData{}, err
+	}
+
+	return MoneyData{lastUpdate, money, nextUpdate}, nil
 }

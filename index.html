@@ -15,6 +15,7 @@
     <p id="money">{{ .Money }}&nbsp;zł</p>
 
     <p id="updated">zaktualizowano <wbr>{{ .MinutesSinceLastUpdate }} temu</p>
+    <p id="next">następna aktualizacja za <wbr>{{ .MinutesUntilNextUpdate }}</p>
   </body>
 </html>
 {{end}}

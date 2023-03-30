@@ -8,17 +8,15 @@ import (
 type MoneyData struct {
 	LastUpdate int64
 	Money      string
+	NextUpdate int64
 }
 
 type FormattedDelta struct {
-	Delta int
-	Ago   string
+	Delta   int
+	Minutes string
 }
 
-func (m MoneyData) MinutesSinceLastUpdate() FormattedDelta {
-	current := time.Now().Unix()
-	delta := int((current - m.LastUpdate) / 60)
-
+func FromInt(delta int) FormattedDelta {
 	if delta == 1 {
 		return FormattedDelta{delta, "minutę"}
 	}
@@ -28,9 +26,20 @@ func (m MoneyData) MinutesSinceLastUpdate() FormattedDelta {
 	}
 
 	return FormattedDelta{delta, "minuty"}
-	
+}
+
+func (m MoneyData) MinutesSinceLastUpdate() FormattedDelta {
+	current := time.Now().Unix()
+	delta := int((current - m.LastUpdate) / 60)
+	return FromInt(delta)
+}
+
+func (m MoneyData) MinutesUntilNextUpdate() FormattedDelta {
+	current := time.Now().Unix()
+	delta := int((m.NextUpdate - current) / 60)
+	return FromInt(delta)
 }
 
 func (f FormattedDelta) String() string {
-	return fmt.Sprintf("%d %s", f.Delta, f.Ago)
+	return fmt.Sprintf("%d %s", f.Delta, f.Minutes)
 }

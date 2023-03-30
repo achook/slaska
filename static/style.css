@@ -30,4 +30,10 @@ body {
 #updated {
     font-size: large;
     margin-top: auto;
+    margin-bottom: 4px;
+}
+
+#next {
+    margin-top: 4px;
+    font-size: large;
 }
